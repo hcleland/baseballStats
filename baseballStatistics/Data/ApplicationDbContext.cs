@@ -20,7 +20,6 @@ namespace baseballStatistics.Data
         public DbSet<Team> Team { get; set; }
         public DbSet<BattingStats> Stats { get; set; }
         public DbSet<FieldingStats> FieldingStats { get; set; }
-        public DbSet<CoachTeam> CoachTeam { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -32,7 +31,7 @@ namespace baseballStatistics.Data
                 LastName = "Parent",
                 UserName = "parent@mail.com",
                 NormalizedUserName = "PARENT@MAIL.COM",
-                Phone = "615-555-5555",
+                PhoneNumber = "615-555-5555",
                 Email = "parent@mail.com",
                 NormalizedEmail = "PARENT@MAIL.COM",
                 EmailConfirmed = true,
@@ -69,15 +68,6 @@ namespace baseballStatistics.Data
             };
 
             builder.Entity<Team>().HasData(team);
-
-            CoachTeam coachTeam = new CoachTeam
-            {
-                Id = 1,
-                ApplicationUserId = user.Id,
-                TeamId = 1
-            };
-
-            builder.Entity<CoachTeam>().HasData(coachTeam);
 
             BattingStats battingStats = new BattingStats
             {

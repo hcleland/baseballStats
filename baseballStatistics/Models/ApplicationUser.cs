@@ -18,11 +18,6 @@ namespace baseballStatistics.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        public string Phone { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
         [Required]
         public bool IsCoach { get; set; }
 

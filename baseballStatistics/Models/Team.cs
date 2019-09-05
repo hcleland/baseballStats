@@ -21,7 +21,7 @@ namespace baseballStatistics.Models
         [Display(Name = "Affiliated Team")]
         public string TeamAffiliation { get; set; }
 
-        [Required]
+        //[Required]
         public string ApplicationUserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
