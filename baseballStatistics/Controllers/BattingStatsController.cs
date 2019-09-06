@@ -62,26 +62,49 @@ namespace baseballStatistics.Controllers
         }
 
         // GET: BattingStats/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId");
+            //var user = await GetCurrentUserAsync();
+            //ViewData["PlayerId"] = new SelectList(
+            //    _context.Player.Where(a => a.
+            //    ApplicationUserId == user.Id), "Id", "FullName");
+            //return View();
+
+            var user = await GetUserAsync();
+            ViewData["PlayerId"] = new SelectList(
+                _context.Player.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
             return View();
+
+            //var user = await GetCurrentUserAsync();
+            //var applicationDbContext = _context.Stats
+            //    .Where(b => b.Player.ApplicationUserId == user.Id)
+            //    .Include(b => b.Player.ApplicationUser)
+            //    .Include(b => b.Player);
+            //if (user == null)
+            //{
+            //    return NotFound();
+            //}
+            //else
+            //{
+            //    return View(await applicationDbContext.ToListAsync());
+            //}
         }
 
+
         // POST: BattingStats/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,PlayerId,GameDate,AtBat,Hit,Single,Double,Triple,HomeRun,RunsBattedIn,RunsScored,Walk,Strikeout")] BattingStats battingStats)
         {
             if (ModelState.IsValid)
-            {
+            { 
+
                 _context.Add(battingStats);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", battingStats.PlayerId);
+            //ViewData["PlayerId"] = new SelectList(
+            //    _context.Player.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName", battingStats.PlayerId);
             return View(battingStats);
         }
 
@@ -177,5 +200,6 @@ namespace baseballStatistics.Controllers
         {
             return _userManager.GetUserAsync(HttpContext.User);
         }
+
     }
 }
