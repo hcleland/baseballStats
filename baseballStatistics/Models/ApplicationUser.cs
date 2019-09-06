@@ -23,6 +23,8 @@ namespace baseballStatistics.Models
 
         public string TypeOfCoach { get; set; }
 
+        public virtual ICollection<Player> Players { get; set; }
+
         [NotMapped]
         [Display(Name = "Full Name")]
         public string FullName

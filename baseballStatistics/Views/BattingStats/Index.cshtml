@@ -1,0 +1,101 @@
+﻿@model IEnumerable<baseballStatistics.Models.BattingStats>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AtBat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Single)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Double)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Triple)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeRun)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RunsBattedIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RunsScored)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Walk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Strikeout)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Player)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AtBat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Single)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Double)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Triple)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeRun)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RunsBattedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RunsScored)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Walk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Strikeout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player.ApplicationUserId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

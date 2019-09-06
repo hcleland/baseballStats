@@ -1,0 +1,89 @@
+﻿@model baseballStatistics.Models.BattingStats
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>BattingStats</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="PlayerId" class="control-label"></label>
+                <select asp-for="PlayerId" class="form-control" asp-items="ViewBag.PlayerId"></select>
+                <span asp-validation-for="PlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameDate" class="control-label"></label>
+                <input asp-for="GameDate" class="form-control" />
+                <span asp-validation-for="GameDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AtBat" class="control-label"></label>
+                <input asp-for="AtBat" class="form-control" />
+                <span asp-validation-for="AtBat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hit" class="control-label"></label>
+                <input asp-for="Hit" class="form-control" />
+                <span asp-validation-for="Hit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Single" class="control-label"></label>
+                <input asp-for="Single" class="form-control" />
+                <span asp-validation-for="Single" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Double" class="control-label"></label>
+                <input asp-for="Double" class="form-control" />
+                <span asp-validation-for="Double" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Triple" class="control-label"></label>
+                <input asp-for="Triple" class="form-control" />
+                <span asp-validation-for="Triple" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HomeRun" class="control-label"></label>
+                <input asp-for="HomeRun" class="form-control" />
+                <span asp-validation-for="HomeRun" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RunsBattedIn" class="control-label"></label>
+                <input asp-for="RunsBattedIn" class="form-control" />
+                <span asp-validation-for="RunsBattedIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RunsScored" class="control-label"></label>
+                <input asp-for="RunsScored" class="form-control" />
+                <span asp-validation-for="RunsScored" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Walk" class="control-label"></label>
+                <input asp-for="Walk" class="form-control" />
+                <span asp-validation-for="Walk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Strikeout" class="control-label"></label>
+                <input asp-for="Strikeout" class="form-control" />
+                <span asp-validation-for="Strikeout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
