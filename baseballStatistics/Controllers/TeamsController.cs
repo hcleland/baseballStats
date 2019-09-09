@@ -7,23 +7,38 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using baseballStatistics.Data;
 using baseballStatistics.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace baseballStatistics.Controllers
 {
     public class TeamsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TeamsController(ApplicationDbContext context)
+        public TeamsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Teams
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Team.Include(t => t.ApplicationUser);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await GetCurrentUserAsync();
+            var applicationDbContext = _context.Team;
+                //.Include(t => t.Players)
+                //.Where(t => t.ApplicationUserId == user.Id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(await applicationDbContext.ToListAsync());
+            }
         }
 
         // GET: Teams/Details/5
@@ -155,6 +170,11 @@ namespace baseballStatistics.Controllers
         private bool TeamExists(int id)
         {
             return _context.Team.Any(e => e.Id == id);
+        }
+
+        private Task<ApplicationUser> GetUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
         }
     }
 }

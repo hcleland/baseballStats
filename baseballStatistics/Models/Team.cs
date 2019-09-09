@@ -28,6 +28,5 @@ namespace baseballStatistics.Models
 
         public virtual ICollection<Player> Players { get; set; }
 
-
     }
 }

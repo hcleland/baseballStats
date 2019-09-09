@@ -7,23 +7,40 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using baseballStatistics.Data;
 using baseballStatistics.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace baseballStatistics.Controllers
 {
     public class PlayersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PlayersController(ApplicationDbContext context)
+        public PlayersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Players
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Player.Include(p => p.ApplicationUser).Include(p => p.Team);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await GetCurrentUserAsync();
+            var applicationDbContext = _context.Player
+                .Where(b => b.ApplicationUserId == user.Id)
+                .Include(b => b.ApplicationUser)
+                .Include(b => b.Team);
+                //.Include(b => b.Player);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(await applicationDbContext.ToListAsync());
+            }
         }
 
         // GET: Players/Details/5
@@ -161,6 +178,11 @@ namespace baseballStatistics.Controllers
         private bool PlayerExists(int id)
         {
             return _context.Player.Any(e => e.Id == id);
+        }
+
+        private Task<ApplicationUser> GetUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
         }
     }
 }
