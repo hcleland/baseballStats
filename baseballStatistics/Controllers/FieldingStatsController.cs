@@ -7,49 +7,70 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using baseballStatistics.Data;
 using baseballStatistics.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace baseballStatistics.Controllers
 {
     public class FieldingStatsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public FieldingStatsController(ApplicationDbContext context)
+        public FieldingStatsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: FieldingStats
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.FieldingStats.Include(f => f.Player);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await GetCurrentUserAsync();
+            var applicationDbContext = _context.FieldingStats
+                .Where(b => b.Player.ApplicationUserId == user.Id)
+                .Include(b => b.Player.ApplicationUser)
+                .Include(b => b.Player);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(await applicationDbContext.ToListAsync());
+            }
+
+            // var applicationDbContext = _context.FieldingStats.Include(f => f.Player);
+            // return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: FieldingStats/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var fieldingStats = await _context.FieldingStats
-                .Include(f => f.Player)
+            var fieldingStat = await _context.FieldingStats
+                .Include(b => b.Player.ApplicationUser)
+                .Include(b => b.Player)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (fieldingStats == null)
+            if (fieldingStat == null)
             {
                 return NotFound();
             }
 
-            return View(fieldingStats);
+            return View(fieldingStat);
+
         }
 
         // GET: FieldingStats/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId");
+            var user = await GetUserAsync();
+            ViewData["PlayerId"] = new SelectList(
+                _context.Player.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
             return View();
+            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId");
+            //return View();
         }
 
         // POST: FieldingStats/Create
@@ -65,7 +86,7 @@ namespace baseballStatistics.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
+            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
             return View(fieldingStats);
         }
 
@@ -155,6 +176,11 @@ namespace baseballStatistics.Controllers
         private bool FieldingStatsExists(int id)
         {
             return _context.FieldingStats.Any(e => e.Id == id);
+        }
+
+        private Task<ApplicationUser> GetUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
         }
     }
 }

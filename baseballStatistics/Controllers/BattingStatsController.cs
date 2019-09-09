@@ -65,30 +65,10 @@ namespace baseballStatistics.Controllers
         // GET: BattingStats/Create
         public async Task<IActionResult> Create()
         {
-            //var user = await GetCurrentUserAsync();
-            //ViewData["PlayerId"] = new SelectList(
-            //    _context.Player.Where(a => a.
-            //    ApplicationUserId == user.Id), "Id", "FullName");
-            //return View();
-
             var user = await GetUserAsync();
             ViewData["PlayerId"] = new SelectList(
                 _context.Player.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
             return View();
-
-            //var user = await GetCurrentUserAsync();
-            //var applicationDbContext = _context.Stats
-            //    .Where(b => b.Player.ApplicationUserId == user.Id)
-            //    .Include(b => b.Player.ApplicationUser)
-            //    .Include(b => b.Player);
-            //if (user == null)
-            //{
-            //    return NotFound();
-            //}
-            //else
-            //{
-            //    return View(await applicationDbContext.ToListAsync());
-            //}
         }
 
 
