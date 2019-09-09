@@ -35,6 +35,35 @@
             @Html.DisplayFor(model => model.ApplicationUser.Id)
         </dd>
     </dl>
+
+    <h4>Players</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    JerseyNumber
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Players)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JerseyNumber)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

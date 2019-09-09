@@ -21,10 +21,21 @@ namespace baseballStatistics.Models
 
         public string Nickname { get; set; }
 
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
+
         [Required]
         public int Age { get; set; }
 
         public string Position { get; set; }
+
+        public int JerseyNumber { get; set; }
 
         [Required]
         public string ApplicationUserId { get; set; }

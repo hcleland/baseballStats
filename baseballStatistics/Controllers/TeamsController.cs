@@ -50,7 +50,7 @@ namespace baseballStatistics.Controllers
             }
 
             var team = await _context.Team
-                .Include(t => t.ApplicationUser)
+                .Include(t => t.Players)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {
@@ -63,7 +63,19 @@ namespace baseballStatistics.Controllers
         // GET: Teams/Create
         public IActionResult Create()
         {
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
+            var coachList = _context.ApplicationUser
+                    .Where(a => a.IsCoach == true);
+            var coachSelectList = coachList.Select(coach => new SelectListItem
+            {
+                Text = coach.FullName,
+                Value = coach.Id.ToString()
+            }).ToList();
+            coachSelectList.Insert(0, new SelectListItem
+            {
+                Text = "Select Coach",
+                Value = "null"
+            });
+            ViewData["ApplicationUser"] = coachSelectList;
             return View();
         }
 
@@ -74,14 +86,20 @@ namespace baseballStatistics.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Mascot,TeamAffiliation,ApplicationUserId")] Team team)
         {
+            if (team.ApplicationUserId == "null")
+            {
+                team.ApplicationUserId = null;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(team);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", team.ApplicationUserId);
-            return View(team);
+
+    
+                return View(team);
         }
 
         // GET: Teams/Edit/5
