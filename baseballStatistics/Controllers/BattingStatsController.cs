@@ -50,15 +50,16 @@ namespace baseballStatistics.Controllers
                 return NotFound();
             }
 
-            var battingStats = await _context.Stats
+            var battingStat = await _context.Stats
+                .Include(b => b.Player.ApplicationUser)
                 .Include(b => b.Player)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (battingStats == null)
+            if (battingStat == null)
             {
                 return NotFound();
             }
 
-            return View(battingStats);
+            return View(battingStat);
         }
 
         // GET: BattingStats/Create
