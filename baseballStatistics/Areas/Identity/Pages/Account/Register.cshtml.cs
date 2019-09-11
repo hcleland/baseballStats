@@ -81,7 +81,7 @@ namespace baseballStatistics.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/players");
+            returnUrl = returnUrl ?? Url.Content("~/players/create");
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
