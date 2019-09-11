@@ -64,11 +64,23 @@ namespace baseballStatistics.Controllers
         }
 
         // GET: Players/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
+            var user = await GetCurrentUserAsync();
+
+            var player = new Player()
+            {
+                ApplicationUser = user,
+                ApplicationUserId = user.Id
+            };
+
             ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Name");
-            return View();
+
+            return View(player);
+
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
+            //ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Name");
+            //return View();
         }
 
         // POST: Players/Create
