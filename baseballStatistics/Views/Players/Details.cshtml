@@ -175,9 +175,9 @@
                 @Html.DisplayFor(modelItem => item.DoublePlay)
             </td>
             <td>
+                <a asp-action="Create" asp-route-id="@item.Id" asp-controller="FieldingStats">Add New</a> |
                 <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="FieldingStats">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="FieldingStats">Delete</a>
             </td>
         </tr>
         }

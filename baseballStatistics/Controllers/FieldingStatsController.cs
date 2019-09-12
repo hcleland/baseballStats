@@ -67,12 +67,19 @@ namespace baseballStatistics.Controllers
         }
 
         // GET: FieldingStats/Create
+
         public async Task<IActionResult> Create()
         {
-            var user = await GetUserAsync();
-            ViewData["PlayerId"] = new SelectList(
-                _context.Player.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
-            return View();
+            var user = await GetCurrentUserAsync();
+            var player = new Player()
+            {
+                ApplicationUser = user,
+                ApplicationUserId = user.Id
+            };
+
+            ViewData["PlayerId"] = new SelectList(_context.Player
+                .Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
+            return View(player);
             //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId");
             //return View();
         }
@@ -90,7 +97,8 @@ namespace baseballStatistics.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", player.ApplicationUserId);
+            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
             return View(fieldingStats);
         }
 

@@ -45,6 +45,11 @@
                 <span asp-validation-for="Position" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="JerseyNumber" class="control-label"></label>
+                <input asp-for="JerseyNumber" class="form-control" />
+                <span asp-validation-for="JerseyNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ApplicationUser.FullName" class="control-label">Parent</label>
                 <input disabled asp-for="ApplicationUser.FullName" class="form-control" asp-items="ApplicationUser.FullName" />
             </div>

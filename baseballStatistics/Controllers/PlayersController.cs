@@ -90,7 +90,7 @@ namespace baseballStatistics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Nickname,Age,Position,ApplicationUserId,TeamId")] Player player)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Nickname,Age,Position,JerseyNumber,ApplicationUserId,TeamId")] Player player)
         {
             if (ModelState.IsValid)
             {
