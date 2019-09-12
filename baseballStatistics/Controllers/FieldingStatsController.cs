@@ -71,17 +71,19 @@ namespace baseballStatistics.Controllers
         public async Task<IActionResult> Create()
         {
             var user = await GetCurrentUserAsync();
+
             var player = new Player()
             {
                 ApplicationUser = user,
                 ApplicationUserId = user.Id
             };
 
-            ViewData["PlayerId"] = new SelectList(_context.Player
-                .Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
-            return View(player);
-            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId");
-            //return View();
+
+            //ViewData["PlayerId"] = new SelectList(_context.Player
+            //.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
+            //return View(player);
+            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "FullName");
+            return View();
         }
 
         // POST: FieldingStats/Create
@@ -89,7 +91,7 @@ namespace baseballStatistics.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PlayerId,GameDate,Assist,Error,Putout,DoublePlay")] FieldingStats fieldingStats)
+        public async Task<IActionResult> Create([Bind("PlayerId,GameDate,Assist,Error,Putout,DoublePlay")] FieldingStats fieldingStats)
         {
             if (ModelState.IsValid)
             {

@@ -92,49 +92,50 @@
     <tbody>
         @foreach (var item in Model.BattingStats)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GameDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Single)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Double)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Triple)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeRun)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RunsBattedIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RunsScored)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Walk)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Strikeout)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="BattingStats">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Single)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Double)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Triple)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeRun)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RunsBattedIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RunsScored)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Walk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Strikeout)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="BattingStats">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 
 
 <h4>Fielding Statistics</h4>
+<a asp-action="Create" asp-controller="FieldingStats">Add New</a>
 <table class="table">
     <thead>
         <tr>
@@ -158,28 +159,27 @@
     <tbody>
         @foreach (var item in Model.FieldingStats)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GameDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Assist)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Error)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Putout)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoublePlay)
-            </td>
-            <td>
-                <a asp-action="Create" asp-route-id="@item.Id" asp-controller="FieldingStats">Add New</a> |
-                <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="FieldingStats">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="FieldingStats">Delete</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Assist)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Error)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Putout)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoublePlay)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="FieldingStats">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="FieldingStats">Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
