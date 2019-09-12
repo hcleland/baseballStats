@@ -48,6 +48,10 @@ namespace baseballStatistics.Controllers
         // GET: FieldingStats/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var fieldingStat = await _context.FieldingStats
                 .Include(b => b.Player.ApplicationUser)
@@ -98,12 +102,14 @@ namespace baseballStatistics.Controllers
                 return NotFound();
             }
 
-            var fieldingStats = await _context.FieldingStats.FindAsync(id);
+            var fieldingStats = await _context.FieldingStats
+                .Include(p => p.Player)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (fieldingStats == null)
             {
                 return NotFound();
             }
-            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
+            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
             return View(fieldingStats);
         }
 
@@ -137,7 +143,7 @@ namespace baseballStatistics.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Players", new { id = id });
             }
             ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
             return View(fieldingStats);

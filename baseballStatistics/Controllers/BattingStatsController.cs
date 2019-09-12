@@ -97,7 +97,6 @@ namespace baseballStatistics.Controllers
                 return NotFound();
             }
 
-            //var player = await _context.Player.FindAsync(id);
             var battingStats = await _context.Stats
                 .Include(p => p.Player)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -105,8 +104,7 @@ namespace baseballStatistics.Controllers
             {
                 return NotFound();
             }
-            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", player.ApplicationUserId);
-            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "PlayerId", battingStats.PlayerId);
+            
             return View(battingStats);
         }
 
@@ -144,7 +142,6 @@ namespace baseballStatistics.Controllers
             }
             ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", battingStats.PlayerId);
             return View();
-            //return RedirectToAction("Details", "Players", new { id = id});
         }
 
         // GET: BattingStats/Delete/5
