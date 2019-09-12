@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">baseballStatistics</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Baseball Ready</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -42,8 +42,9 @@
                     }
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a asp-area="" asp-controller="Players" asp-action="Create">Add Player</a></li>
+                        <li><a asp-area="" asp-controller="Players" asp-action="Index">Players</a></li>
                     }
+                    <li><a asp-area="" asp-controller="Teams" asp-action="Index">Teams</a></li>
                     </ul>
                 <partial name="_LoginPartial" />
             </div>

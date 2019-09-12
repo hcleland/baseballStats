@@ -44,6 +44,10 @@ namespace baseballStatistics.Models
 
         public virtual Team Team { get; set; }
 
+        public virtual ICollection<BattingStats> BattingStats { get; set; }
+
+        public virtual ICollection<FieldingStats> FieldingStats { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

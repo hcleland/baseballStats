@@ -54,6 +54,8 @@ namespace baseballStatistics.Controllers
             var player = await _context.Player
                 .Include(p => p.ApplicationUser)
                 .Include(p => p.Team)
+                .Include(p => p.BattingStats)
+                .Include(p => p.FieldingStats)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (player == null)
             {
@@ -109,7 +111,12 @@ namespace baseballStatistics.Controllers
                 return NotFound();
             }
 
-            var player = await _context.Player.FindAsync(id);
+            var player = await _context.Player
+                .Include(p => p.ApplicationUser)
+                .Include(p => p.Team)
+                .Include(p => p.BattingStats)
+                .Include(p => p.FieldingStats)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (player == null)
             {
                 return NotFound();

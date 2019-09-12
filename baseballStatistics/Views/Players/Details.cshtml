@@ -4,57 +4,187 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Player Summary</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>
+                @Html.DisplayFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Nickname)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Team.Name)
+            </th>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Batting Statistics</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Game Date
+            </th>
+            <th>
+                Hits
+            </th>
+            <th>
+                Singles
+            </th>
+            <th>
+                Doubles
+            </th>
+            <th>
+                Triples
+            </th>
+            <th>
+                Homeruns
+            </th>
+            <th>
+                RBIs
+            </th>
+            <th>
+                Runs Scored
+            </th>
+            <th>
+                Walks
+            </th>
+            <th>
+                Strikeouts
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BattingStats)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Single)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Double)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Triple)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeRun)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RunsBattedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RunsScored)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Walk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Strikeout)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="BattingStats">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<h4>Fielding Statistics</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Game Date
+            </th>
+            <th>
+                Assists
+            </th>
+            <th>
+                Errors
+            </th>
+            <th>
+                Putouts
+            </th>
+            <th>
+                Double Plays
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FieldingStats)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assist)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Error)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Putout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoublePlay)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
 
 <div>
-    <h4>Player</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nickname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Position)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Team)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Team.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
     <a asp-action="Index">Back to List</a>
 </div>

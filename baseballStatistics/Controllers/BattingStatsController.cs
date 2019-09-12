@@ -97,12 +97,16 @@ namespace baseballStatistics.Controllers
                 return NotFound();
             }
 
-            var battingStats = await _context.Stats.FindAsync(id);
+            //var player = await _context.Player.FindAsync(id);
+            var battingStats = await _context.Stats
+                .Include(p => p.Player)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (battingStats == null)
             {
                 return NotFound();
             }
-            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", battingStats.PlayerId);
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", player.ApplicationUserId);
+            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "PlayerId", battingStats.PlayerId);
             return View(battingStats);
         }
 
@@ -136,10 +140,11 @@ namespace baseballStatistics.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Players", new { id = id});
             }
             ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", battingStats.PlayerId);
-            return View(battingStats);
+            return View();
+            //return RedirectToAction("Details", "Players", new { id = id});
         }
 
         // GET: BattingStats/Delete/5
