@@ -29,16 +29,17 @@ namespace baseballStatistics.Controllers
         {
             var user = await GetCurrentUserAsync();
             var applicationDbContext = _context.Team;
-                //.Include(t => t.Players)
-                //.Where(t => t.ApplicationUserId == user.Id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return View(await applicationDbContext.ToListAsync());
-            }
+            //.Include(t => t.Players)
+            //.Where(t => t.ApplicationUserId == user.Id);
+            return View(await applicationDbContext.ToListAsync());
+            //if (user == null)
+            //{
+            //    return NotFound();
+            //}
+            //else
+            //{
+            //    return View(await applicationDbContext.ToListAsync());
+            //}
         }
 
         // GET: Teams/Details/5

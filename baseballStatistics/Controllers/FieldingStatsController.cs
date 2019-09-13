@@ -40,9 +40,6 @@ namespace baseballStatistics.Controllers
             {
                 return View(await applicationDbContext.ToListAsync());
             }
-
-            // var applicationDbContext = _context.FieldingStats.Include(f => f.Player);
-            // return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: FieldingStats/Details/5
@@ -99,7 +96,6 @@ namespace baseballStatistics.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", player.ApplicationUserId);
             ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
             return View(fieldingStats);
         }
@@ -119,7 +115,7 @@ namespace baseballStatistics.Controllers
             {
                 return NotFound();
             }
-            //ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
+            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
             return View(fieldingStats);
         }
 
@@ -153,7 +149,7 @@ namespace baseballStatistics.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Details", "Players", new { id = id });
+                return RedirectToAction("Details", "Players", new { id = fieldingStats.PlayerId });
             }
             ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", fieldingStats.PlayerId);
             return View(fieldingStats);

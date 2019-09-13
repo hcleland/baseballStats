@@ -4,18 +4,19 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Fielding Stat</h2>
+<h4>Game Date: @Html.DisplayFor(model => model.GameDate)</h4>
+<h4>Player: @Html.DisplayFor(model => model.Player.FullName)</h4>
 
 <div>
-    <h4>FieldingStats</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.GameDate)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.GameDate)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.Assist)
         </dt>
@@ -40,12 +41,12 @@
         <dd>
             @Html.DisplayFor(model => model.DoublePlay)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Player)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Player.ApplicationUserId)
-        </dd>
+            @Html.DisplayFor(model => model.Player.FullName)
+        </dd>*@
     </dl>
 </div>
 <div>

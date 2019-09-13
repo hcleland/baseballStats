@@ -67,10 +67,10 @@ namespace baseballStatistics.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name = "Is a Coach?")]
+            [Display(Name = "Also a Coach?")]
             public bool IsCoach { get; set; }
 
-            [Display(Name = "Head Coach or Assistant Coach")]
+            [Display(Name = "Are you a HEAD or ASSISTANT Coach?")]
             public string TypeOfCoach { get; set; }
         }
 

@@ -65,9 +65,19 @@ namespace baseballStatistics.Controllers
         // GET: BattingStats/Create
         public async Task<IActionResult> Create()
         {
-            var user = await GetUserAsync();
-            ViewData["PlayerId"] = new SelectList(
-                _context.Player.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
+            var user = await GetCurrentUserAsync();
+
+            var player = new Player()
+            {
+                ApplicationUser = user,
+                ApplicationUserId = user.Id
+            };
+
+
+            //ViewData["PlayerId"] = new SelectList(_context.Player
+            //.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName");
+            //return View(player);
+            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "FullName");
             return View();
         }
 
@@ -75,17 +85,16 @@ namespace baseballStatistics.Controllers
         // POST: BattingStats/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,PlayerId,GameDate,AtBat,Hit,Single,Double,Triple,HomeRun,RunsBattedIn,RunsScored,Walk,Strikeout")] BattingStats battingStats)
+        public async Task<IActionResult> Create([Bind("PlayerId,GameDate,AtBat,Hit,Single,Double,Triple,HomeRun,RunsBattedIn,RunsScored,Walk,Strikeout")] BattingStats battingStats)
         {
             if (ModelState.IsValid)
-            { 
-
+            {
                 _context.Add(battingStats);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["PlayerId"] = new SelectList(
-            //    _context.Player.Where(a => a.ApplicationUserId == user.Id), "Id", "FirstName", battingStats.PlayerId);
+            ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", battingStats.PlayerId);
             return View(battingStats);
         }
 
@@ -138,10 +147,10 @@ namespace baseballStatistics.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Details", "Players", new { id = id});
+                return RedirectToAction("Details", "Players", new { id = battingStats.PlayerId});
             }
             ViewData["PlayerId"] = new SelectList(_context.Player, "Id", "ApplicationUserId", battingStats.PlayerId);
-            return View();
+            return View(battingStats);
         }
 
         // GET: BattingStats/Delete/5
