@@ -35,7 +35,7 @@ namespace baseballStatistics.Models
 
         public string Position { get; set; }
 
-        [Display(Name = "Jersey Number")]
+        [Display(Name = "Number")]
         public int JerseyNumber { get; set; }
 
         [Required]

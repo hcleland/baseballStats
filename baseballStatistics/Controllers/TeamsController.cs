@@ -28,7 +28,9 @@ namespace baseballStatistics.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            var applicationDbContext = _context.Team;
+            var applicationDbContext = _context.Team
+                .Include(a => a.ApplicationUser)
+                .Where(a => a.ApplicationUser.IsCoach == true);
             //.Include(t => t.Players)
             //.Where(t => t.ApplicationUserId == user.Id);
             return View(await applicationDbContext.ToListAsync());
@@ -116,7 +118,20 @@ namespace baseballStatistics.Controllers
             {
                 return NotFound();
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", team.ApplicationUserId);
+            var coachList = _context.ApplicationUser
+                .Where(a => a.IsCoach == true);
+            var coachSelectList = coachList.Select(coach => new SelectListItem
+            {
+                Text = coach.FullName,
+                Value = coach.Id
+            }).ToList();
+            coachSelectList.Insert(0, new SelectListItem
+            {
+                Text = "Select Coach",
+                Value = "null"
+            });
+            ViewData["ApplicationUserId"] = coachSelectList;
+            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id", team.ApplicationUserId);
             return View(team);
         }
 

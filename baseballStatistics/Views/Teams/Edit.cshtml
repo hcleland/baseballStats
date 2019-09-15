@@ -4,9 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Update Team Information</h2>
 
-<h4>Team</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -29,7 +28,7 @@
                 <span asp-validation-for="TeamAffiliation" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>
+                <label asp-for="ApplicationUserId" class="control-label">Coach</label>
                 <select asp-for="ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUserId"></select>
                 <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
             </div>
