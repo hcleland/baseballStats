@@ -16,6 +16,12 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+                <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.FullName)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Mascot)
         </dt>
@@ -37,14 +43,17 @@
     </dl>
 
     <h4>Players</h4>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
                     Full Name
                 </th>
                 <th>
-                    JerseyNumber
+                    Number
+                </th>
+                <th>
+                    Position
                 </th>
             </tr>
         </thead>
@@ -58,6 +67,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.JerseyNumber)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
             </tr>
             }
         </tbody>
@@ -66,6 +78,6 @@
 
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id" style="color:#EB6864">Edit</a> |
+    <a asp-action="Index" style="color:#EB6864">Back to List</a>
 </div>

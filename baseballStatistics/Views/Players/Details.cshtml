@@ -43,7 +43,7 @@
             <th>
                 @Html.DisplayFor(model => model.Position)
             </th>
-                        <th>
+            <th>
                 @Html.DisplayFor(model => model.JerseyNumber)
             </th>
             <th>
@@ -60,6 +60,9 @@
         <tr>
             <th>
                 Game Date
+            </th>
+            <th>
+                At Bats
             </th>
             <th>
                 Hits
@@ -93,49 +96,67 @@
     <tbody>
         @foreach (var item in Model.BattingStats)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GameDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Single)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Double)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Triple)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeRun)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RunsBattedIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RunsScored)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Walk)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Strikeout)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="BattingStats"><i class="fas fa-edit fa-lg" style="color: #EB6864;" title="Edit"></i></a> |
-                @*<a asp-action="Details" asp-route-id="@item.Id" asp-controller="BattingStats"><i class="fas fa-list fa-lg" style="color: #EB6864;" title="Details"></i></a> |*@
-                <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="BattingStats"><i class="fas fa-trash-alt fa-lg" style="color: #EB6864;" title="Delete"></i></a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AtBat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Single)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Double)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Triple)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeRun)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RunsBattedIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RunsScored)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Walk)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Strikeout)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="BattingStats"><i class="fas fa-edit fa-lg" style="color: #EB6864;" title="Edit"></i></a> |
+                    @*<a asp-action="Details" asp-route-id="@item.Id" asp-controller="BattingStats"><i class="fas fa-list fa-lg" style="color: #EB6864;" title="Details"></i></a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="BattingStats"><i class="fas fa-trash-alt fa-lg" style="color: #EB6864;" title="Delete"></i></a>
+                </td>
+            </tr>
         }
-    </tbody>
+    <tr>
+        <td>Total</td>
+        <td>@Model.BattingStats.Sum(i => i.AtBat)</td>
+        <td>@Model.BattingStats.Sum(i => i.Hit)</td>
+        <td>@Model.BattingStats.Sum(i => i.Single)</td>
+        <td>@Model.BattingStats.Sum(i => i.Double)</td>
+        <td>@Model.BattingStats.Sum(i => i.Triple)</td>
+        <td>@Model.BattingStats.Sum(i => i.HomeRun)</td>
+        <td>@Model.BattingStats.Sum(i => i.RunsBattedIn)</td>
+        <td>@Model.BattingStats.Sum(i => i.RunsScored)</td>
+        <td>@Model.BattingStats.Sum(i => i.Walk)</td>
+        <td>@Model.BattingStats.Sum(i => i.Strikeout)</td>
+    </tr>
+        </tbody>
 </table>
 
+<h1></h1>
+
 @*<h4>Fielding Statistics</h4>
-<a asp-action="Create" asp-controller="FieldingStats"><button type="button" class="btn btn-primary">Add New</button></a>*@
+    <a asp-action="Create" asp-controller="FieldingStats"><button type="button" class="btn btn-primary">Add New</button></a>*@
 <table class="table table-striped">
     <h1></h1>
     <h4>Fielding Statistics</h4>
@@ -185,6 +206,13 @@
                 </td>
             </tr>
         }
+        <tr>
+            <td>Total</td>
+            <td>@Model.FieldingStats.Sum(i => i.Assist)</td>
+            <td>@Model.FieldingStats.Sum(i => i.Error)</td>
+            <td>@Model.FieldingStats.Sum(i => i.Putout)</td>
+            <td>@Model.FieldingStats.Sum(i => i.DoublePlay)</td>
+        </tr>
     </tbody>
 </table>
 

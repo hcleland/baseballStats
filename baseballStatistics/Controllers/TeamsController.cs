@@ -54,6 +54,8 @@ namespace baseballStatistics.Controllers
 
             var team = await _context.Team
                 .Include(t => t.Players)
+                .Include(a => a.ApplicationUser)
+                .Where(a => a.ApplicationUser.IsCoach == true)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {
