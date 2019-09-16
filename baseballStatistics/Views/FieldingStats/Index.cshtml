@@ -70,6 +70,13 @@
             </td>
         </tr>
         }
+                <tr>
+            <td>Total</td>
+            <td>@Model.Sum(i => i.Assist)</td>
+            <td>@Model.Sum(i => i.Error)</td>
+            <td>@Model.Sum(i => i.Putout)</td>
+            <td>@Model.Sum(i => i.DoublePlay)</td>
+        </tr>
     </tbody>
 </table>
 <p><a asp-action="Create"><button type="button" class="btn btn-primary">Add New</button></a></p>
