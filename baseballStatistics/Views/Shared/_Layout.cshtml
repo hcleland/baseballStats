@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - baseballStatistics</title>
 
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-journal.css" />
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-journal.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <script src="https://kit.fontawesome.com/b79efc25c4.js"></script>
     </environment>
@@ -18,50 +18,47 @@
     </environment>
 </head>
 <body>
-    @*<nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BATTER UP</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><img src="~/images/homeplate2.svg" alt="baseball icon" class="img-responsive" /></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a asp-area="" asp-controller="BattingStats" asp-action="Index">Batting Stats</a></li>
-                        }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a asp-area="" asp-controller="FieldingStats" asp-action="Index">Fielding Stats</a></li>
-                        }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a asp-area="" asp-controller="Players" asp-action="Index">Players</a></li>
-                        }
-                        <li><a asp-area="" asp-controller="Teams" asp-action="Index">Teams</a></li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>*@
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
-        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand navbar-fixed-top"><img src="~/images/batter-up-logo.png" height="100px" width="100px" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img src="~/images/home-plate.png" height="10%;" width="10%;" /></a>
+        @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button>*@
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="" asp-controller="Players" asp-action="Index">Players</a>
+                    </li>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="BattingStats" asp-action="Index">Batting Stats</a>
+                    </li>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="FieldingStats" asp-action="Index">Fielding Stats</a>
+                    </li>
+                }
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Teams" asp-action="Index">Teams <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <partial name="_LoginPartial" class="nav-link" />
+        </div>
+    </nav>
+
+
+
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    @*<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BATTER UP</a>*@
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/home-plate.png" height="10%;" width="10%;"/></a>
                     @*<a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link" href="#">Home <span class="sr-only">BATTER UP</span></a>*@
                 </li>
                 @if (User.Identity.IsAuthenticated)
@@ -86,7 +83,7 @@
                     <a class="nav-link" asp-area="" asp-controller="Teams" asp-action="Index">Teams</a>
                 </li>
             </ul>
-            <partial name="_LoginPartial" class="nav-link" />
+
         </div>
     </nav>
 
@@ -122,5 +119,6 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+    @*<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>*@
 </body>
 </html>

@@ -1,0 +1,17 @@
+﻿@using baseballStatistics.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="nav nav-pills nav-stacked">
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-page="./Index" style="color:#EB6864;">Profile</a></li>
+    </ul>
+<ul>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" asp-page="./ChangePassword" style="color:#EB6864;">Password</a></li>
+    @if (hasExternalLogins)
+    {
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins" style="color:#EB6864;">External logins</a></li>
+    }
+    @*<li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a asp-page="./PersonalData" style="color:#EB6864;">Personal data</a></li>*@
+</ul>

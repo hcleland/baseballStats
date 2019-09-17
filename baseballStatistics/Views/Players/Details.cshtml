@@ -27,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Team)
             </th>
+            <th>
+                Batting Average
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -48,6 +51,11 @@
             </th>
             <th>
                 @Html.DisplayFor(model => model.Team.Name)
+            </th>
+            <th>
+                @ViewBag.BattingAverage
+                @*@((100 / (75 - 25)).ToDecimal(3))*@
+
             </th>
         </tr>
     </tbody>

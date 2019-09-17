@@ -61,6 +61,17 @@ namespace baseballStatistics.Controllers
             {
                 return NotFound();
             }
+            try
+            {
+                //var battingCalculation = (10 / (decimal) (75 - 25)).ToString("N3");
+                var battingCalculation = ((player.BattingStats.Sum(i => i.Hit) / (decimal)(player.BattingStats.Sum(i => i.AtBat) - player.BattingStats.Sum(i => i.Walk))).ToString("N3"));
+
+                ViewData["BattingAverage"] = battingCalculation;
+            }
+            catch (DivideByZeroException)
+            {
+                return View(player);
+            }
 
             return View(player);
         }
