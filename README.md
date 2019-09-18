@@ -1,8 +1,8 @@
 # Batter Up
-## Nashville Software School Backend Captstone Project
 
 ## What is it?
 
+Nashville Software School Backend Capstone Project
 Data and baseball go hand in hand. For this project I wanted to build something that revolved around various pieces of connected data. Inspiration struck at my son's baseball practice. With this app users can store a player's baseball stastistics for each game of the season.
 
 ### Intended Audience
