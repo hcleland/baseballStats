@@ -12,7 +12,7 @@ Parents of baseball players & coaches of baseball players
 ## Built With
 
 * .NET MVC with Entity and Identity Frameworks
-* Bootswatch style template - Joural (https://bootswatch.com/journal/)
+* Bootswatch style template - Journal (https://bootswatch.com/journal/)
 
 ## Acknowledgments
 
