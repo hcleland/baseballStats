@@ -41,7 +41,7 @@ namespace baseballStatistics.Models
         [Required]
         public string ApplicationUserId { get; set; }
 
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
 
         public virtual Team Team { get; set; }
 

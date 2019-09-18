@@ -21,9 +21,16 @@ namespace baseballStatistics.Data
         public DbSet<BattingStats> Stats { get; set; }
         public DbSet<FieldingStats> FieldingStats { get; set; }
 
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            
             base.OnModelCreating(builder);
+
+            builder.Entity<Team>()
+                .HasMany(t => t.Players)
+                .WithOne(p => p.Team)
+                .OnDelete(DeleteBehavior.Restrict);
 
             ApplicationUser user = new ApplicationUser
             {

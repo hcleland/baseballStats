@@ -196,6 +196,8 @@ namespace baseballStatistics.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var players = await _context.Player.Where(p => p.TeamId == id).ToListAsync();
+            players.ForEach(p => p.TeamId = null);
             var team = await _context.Team.FindAsync(id);
             _context.Team.Remove(team);
             await _context.SaveChangesAsync();
