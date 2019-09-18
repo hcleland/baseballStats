@@ -28,20 +28,20 @@
                 <span asp-validation-for="TeamAffiliation" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>
+                <label asp-for="ApplicationUserId" class="control-label">Head Coach</label>
                 <select asp-for="ApplicationUserId" class="form-control" asp-items="ViewBag.ApplicationUser"></select>
             </div>
             <div class="form-group">
                 @*<input type="submit" value="Create" class="btn btn-default" />*@
 
-                <input type="button" value="Add New Team" onclick="window.location='@Url.Action("Create", "Players")'" />
+                <input type="submit" value="Add New Team" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" style="color:#EB6864">Back to List</a>
 </div>
 
 @section Scripts {
