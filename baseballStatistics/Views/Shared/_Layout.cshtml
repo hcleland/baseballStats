@@ -26,6 +26,9 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">BATTER UP</a>
+                </li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item active">
