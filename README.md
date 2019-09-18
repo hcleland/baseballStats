@@ -1,5 +1,5 @@
-# Batter Up 
-# <Nashville Software School Backend Captstone Project>
+# Batter Up
+## Nashville Software School Backend Captstone Project
 
 ## What is it?
 
