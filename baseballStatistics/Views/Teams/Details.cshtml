@@ -6,78 +6,110 @@
 
     <h2>Team Summary</h2>
 
-<div>
-    <h4></h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-                <dt>
-                    Head Coach
-            @*@Html.DisplayNameFor(model => model.ApplicationUser.FullName)*@
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.FullName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Mascot)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Mascot)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TeamAffiliation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TeamAffiliation)
-        </dd>
-        @*<dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.Id)
-        </dd>*@
-    </dl>
+    <div>
+        <h4></h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                Head Coach
+                @*@Html.DisplayNameFor(model => model.ApplicationUser.FullName)*@
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Mascot)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Mascot)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TeamAffiliation)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TeamAffiliation)
+            </dd>
+            @*<dt>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.Id)
+            </dd>*@
+        </dl>
 
-    <h4>Players</h4>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Full Name
-                </th>
-                <th>
-                    Number
-                </th>
-                <th>
-                    Position
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Players)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.JerseyNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+        <h4>Players</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Number
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Players)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JerseyNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
+        <h4>Batting Lineup</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Full Name
+                    </th>
+                    <th>
+                        Number
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Players)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JerseyNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-</div>
+    </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id" style="color:#EB6864">Edit</a> |
     <a asp-action="Index" style="color:#EB6864">Back to List</a>

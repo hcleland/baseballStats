@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using baseballStatistics.Data;
 
 namespace baseballStatistics.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190918190903_changedDeleteOnTeam")]
+    partial class changedDeleteOnTeam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,7 +114,7 @@ namespace baseballStatistics.Migrations
 
                     b.Property<string>("Position");
 
-                    b.Property<int?>("TeamId");
+                    b.Property<int>("TeamId");
 
                     b.HasKey("Id");
 
@@ -342,7 +344,7 @@ namespace baseballStatistics.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
-                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, ConcurrencyStamp = "5fe935cb-909d-49ee-90e2-ec125faca0f0", Email = "parent@mail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "PARENT@MAIL.COM", NormalizedUserName = "PARENT@MAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAEDeRtGbT5wIlC0428DfgOAB2FbZTpvw/tkvcOP6glKk8KKAs26bARzi4yoRuZajamg==", PhoneNumber = "615-555-5555", PhoneNumberConfirmed = false, SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577", TwoFactorEnabled = false, UserName = "parent@mail.com", FirstName = "Ima", IsCoach = false, LastName = "Parent" }
+                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, ConcurrencyStamp = "64e8e518-3a87-4f70-a790-2a51c0f2be16", Email = "parent@mail.com", EmailConfirmed = true, LockoutEnabled = false, NormalizedEmail = "PARENT@MAIL.COM", NormalizedUserName = "PARENT@MAIL.COM", PasswordHash = "AQAAAAEAACcQAAAAELHfMPlLGUdrvIbv1nTL6n5Zm/TgltVas1HKH3VdGX5hrY71WAi8pUbP2i4+8WxoaA==", PhoneNumber = "615-555-5555", PhoneNumberConfirmed = false, SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577", TwoFactorEnabled = false, UserName = "parent@mail.com", FirstName = "Ima", IsCoach = false, LastName = "Parent" }
                     );
                 });
 
