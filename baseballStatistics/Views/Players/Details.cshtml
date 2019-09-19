@@ -146,17 +146,17 @@
             </tr>
         }
     <tr>
-        <td>Total</td>
-        <td>@Model.BattingStats.Sum(i => i.AtBat)</td>
-        <td>@Model.BattingStats.Sum(i => i.Hit)</td>
-        <td>@Model.BattingStats.Sum(i => i.Single)</td>
-        <td>@Model.BattingStats.Sum(i => i.Double)</td>
-        <td>@Model.BattingStats.Sum(i => i.Triple)</td>
-        <td>@Model.BattingStats.Sum(i => i.HomeRun)</td>
-        <td>@Model.BattingStats.Sum(i => i.RunsBattedIn)</td>
-        <td>@Model.BattingStats.Sum(i => i.RunsScored)</td>
-        <td>@Model.BattingStats.Sum(i => i.Walk)</td>
-        <td>@Model.BattingStats.Sum(i => i.Strikeout)</td>
+        <th>Total</th>
+        <th>@Model.BattingStats.Sum(i => i.AtBat)</th>
+        <th>@Model.BattingStats.Sum(i => i.Hit)</th>
+        <th>@Model.BattingStats.Sum(i => i.Single)</th>
+        <th>@Model.BattingStats.Sum(i => i.Double)</th>
+        <th>@Model.BattingStats.Sum(i => i.Triple)</th>
+        <th>@Model.BattingStats.Sum(i => i.HomeRun)</th>
+        <th>@Model.BattingStats.Sum(i => i.RunsBattedIn)</th>
+        <th>@Model.BattingStats.Sum(i => i.RunsScored)</th>
+        <th>@Model.BattingStats.Sum(i => i.Walk)</th>
+        <th>@Model.BattingStats.Sum(i => i.Strikeout)</th>
     </tr>
         </tbody>
 </table>
@@ -214,11 +214,11 @@
             </tr>
         }
         <tr>
-            <td>Total</td>
-            <td>@Model.FieldingStats.Sum(i => i.Assist)</td>
-            <td>@Model.FieldingStats.Sum(i => i.Error)</td>
-            <td>@Model.FieldingStats.Sum(i => i.Putout)</td>
-            <td>@Model.FieldingStats.Sum(i => i.DoublePlay)</td>
+            <th>Total</th>
+            <th>@Model.FieldingStats.Sum(i => i.Assist)</th>
+            <th>@Model.FieldingStats.Sum(i => i.Error)</th>
+            <th>@Model.FieldingStats.Sum(i => i.Putout)</th>
+            <th>@Model.FieldingStats.Sum(i => i.DoublePlay)</th>
         </tr>
     </tbody>
 </table>
