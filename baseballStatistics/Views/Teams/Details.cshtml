@@ -76,39 +76,6 @@
             </tbody>
         </table>
 
-        <h4>Batting Lineup</h4>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        Full Name
-                    </th>
-                    <th>
-                        Number
-                    </th>
-                    <th>
-                        Position
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Players)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.JerseyNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Position)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
     </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id" style="color:#EB6864">Edit</a> |
