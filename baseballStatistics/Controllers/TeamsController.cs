@@ -32,15 +32,6 @@ namespace baseballStatistics.Controllers
                 .Include(a => a.ApplicationUser);
 
                 return View(await applicationDbContext.ToListAsync());
-            //return View();
-            //if (user == null)
-            //{
-            //    return NotFound();
-            //}
-            //else
-            //{
-            //    return View(await applicationDbContext.ToListAsync());
-            //}
         }
 
         // GET: Teams/Details/5

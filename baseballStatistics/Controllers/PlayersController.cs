@@ -91,9 +91,6 @@ namespace baseballStatistics.Controllers
 
             return View(player);
 
-            //ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUser, "Id", "Id");
-            //ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Name");
-            //return View();
         }
 
         // POST: Players/Create

@@ -118,8 +118,6 @@ namespace baseballStatistics.Controllers
         }
 
         // POST: BattingStats/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,PlayerId,GameDate,AtBat,Hit,Single,Double,Triple,HomeRun,RunsBattedIn,RunsScored,Walk,Strikeout")] BattingStats battingStats)
